@@ -1,6 +1,6 @@
 _base_ = [
-    '../../_base_/models/a2mim/convnext_t.py',
-    '../../_base_/datasets/imagenet/a2mim_rgb_m_sz224_rrc08_bs64.py',
+    '../../_base_/models/a2mim/convnext_f.py',
+    '../../_base_/datasets/imagenet/a2mim_rgb_m_sz64_rrc08_bs256.py',
     '../../_base_/default_runtime.py',
 ]
 
@@ -17,30 +17,30 @@ model = dict(
 
 # dataset
 data = dict(
-    imgs_per_gpu=256, workers_per_gpu=10,
+    imgs_per_gpu=1024, workers_per_gpu=4,
     train=dict(
         feature_mode=None, feature_args=dict(),
         mask_pipeline=[
             dict(type='BlockwiseMaskGenerator',
-                input_size=224, mask_patch_size=32, mask_ratio=0.6, model_patch_size=32,  # stage 3
+                input_size=64, mask_patch_size=32, mask_ratio=0.6, model_patch_size=32,  # stage 3
                 mask_color='mean', mask_only=False),
         ],
 ))
 
 # interval for accumulate gradient
-update_interval = 1  # bs256 x 8gpus = bs2048
+update_interval = 1  # bs1024 x 1gpus = bs1024
 
 # additional hooks
 custom_hooks = [
     dict(type='SAVEHook',
-        save_interval=626 * 25,  # plot every 25 ep
+        save_interval=626 * 1,  # plot every 1 ep
         iter_per_epoch=626),
 ]
 
 # optimizer
 optimizer = dict(
     type='AdamW',
-    lr=3e-4 * 2048 / 512,  # 3e-4 * 4 for bs2048
+    lr=3e-4 * 1024 / 512,  # 3e-4 * 4 for bs2048
     betas=(0.9, 0.999), weight_decay=0.05, eps=1e-8,
     paramwise_options={
         '(bn|ln|gn)(\d+)?.(weight|bias)': dict(weight_decay=0.),
@@ -66,4 +66,4 @@ lr_config = dict(
 )
 
 # runtime settings
-runner = dict(type='EpochBasedRunner', max_epochs=300)
+runner = dict(type='EpochBasedRunner', max_epochs=600)

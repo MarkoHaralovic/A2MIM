@@ -186,7 +186,6 @@ def main():
     if args.load_checkpoint is not None:
         assert isinstance(args.load_checkpoint, str) and args.pretrained is None
         load_checkpoint(model, args.load_checkpoint, map_location='cpu')
-
     datasets = [build_dataset(cfg.data.train)]
     assert len(cfg.workflow) == 1, "Validation is called by hook."
     if cfg.checkpoint_config is not None:
