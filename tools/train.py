@@ -182,6 +182,7 @@ def main():
         cfg.model.pretrained = args.pretrained
         if cfg.model.get('init_cfg', None) is not None:
             cfg.model.init_cfg = None  # only initialize the backbone with args.pretrained
+
     model = build_model(cfg.model)
     if args.load_checkpoint is not None:
         assert isinstance(args.load_checkpoint, str) and args.pretrained is None
@@ -193,7 +194,7 @@ def main():
         # checkpoints as meta data
         cfg.checkpoint_config.meta = dict(
             openmixup_version=__version__, config=cfg.pretty_text)
-
+        
     train_model(
         model,
         datasets,

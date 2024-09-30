@@ -1,5 +1,5 @@
 _base_ = [
-    '../_base_/models/convnext_tiny.py',
+    '../_base_/models/convnext_nano.py',
     '../_base_/datasets/imagenet100_swin_ft_sz64_1xbs256.py',
     '../_base_/default_runtime.py',
 ]

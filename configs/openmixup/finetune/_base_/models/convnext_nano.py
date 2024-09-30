@@ -20,9 +20,9 @@ model = dict(
     head=dict(
         type='ClsMixupHead',
         loss=dict(type='LabelSmoothLoss',
-            label_smooth_val=0.1, num_classes=1000, mode='original', loss_weight=1.0),
+            label_smooth_val=0.1, num_classes=100, mode='original', loss_weight=1.0),
         with_avg_pool=False,
-        in_channels=640, num_classes=1000,
+        in_channels=640, num_classes=100,
         init_cfg=[
             dict(type='TruncNormal', layer='Linear', std=0.02, bias=0.),
         ]),
