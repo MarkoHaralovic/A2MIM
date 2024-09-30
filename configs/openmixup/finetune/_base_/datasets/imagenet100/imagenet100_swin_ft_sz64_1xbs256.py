@@ -1,4 +1,4 @@
-_base_ = 'imagenet_swin_ft_sz64_1xbs256.py'
+_base_ = '../imagenet/imagenet_swin_ft_sz64_1xbs256.py'
 
 # dataset settings
 data_source_cfg = dict(type='ImageNet')

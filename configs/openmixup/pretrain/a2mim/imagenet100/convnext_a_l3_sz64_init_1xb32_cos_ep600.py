@@ -4,7 +4,7 @@ _base_ = [
     '../../_base_/default_runtime.py',
 ]
 
-batch_size = 32
+batch_size = 128
 num_gpu = 1
 # interval for accumulate gradient
 update_interval = 1 
@@ -69,4 +69,4 @@ lr_config = dict(
 )
 
 # runtime settings
-runner = dict(type='EpochBasedRunner', max_epochs=600)
+runner = dict(type='EpochBasedRunner', max_epochs=800)

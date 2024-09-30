@@ -12,7 +12,7 @@ train_pipeline = [
 ]
 train_mask_pipeline = [
     dict(type='BlockwiseMaskGenerator',
-        input_size=64, mask_patch_size=32, model_patch_size=4, mask_ratio=0.6,
+        input_size=64, mask_patch_size=8, model_patch_size=4, mask_ratio=0.6,
         mask_only=False, mask_color='mean'),
 ]
 

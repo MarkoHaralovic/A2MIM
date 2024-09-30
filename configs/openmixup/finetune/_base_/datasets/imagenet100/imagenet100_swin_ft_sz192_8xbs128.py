@@ -1,12 +1,12 @@
-_base_ = 'imagenet_swin_ft_sz192_8xbs128.py'
+_base_ = '../imagenet/imagenet_swin_ft_sz192_8xbs128.py'
 
 # dataset settings
 data_source_cfg = dict(type='ImageNet')
-# ImageNet dataset
-data_train_list = 'data/meta/ImageNet100/train_labeled.txt'
-data_train_root = 'data/ImageNet/train'
-data_test_list = 'data/meta/ImageNet100/val_labeled.txt'
-data_test_root = 'data/ImageNet/val/'
+# ImageNet100 dataset
+data_train_list = 'data/imagenet100/train.txt'
+data_train_root = 'data/imagenet100/train'
+data_test_list = 'data/imagenet100/val.txt'
+data_test_root = 'data/imagenet100/val'
 
 data = dict(
     train=dict(
